@@ -36,6 +36,15 @@ abstract class AbstractODM<T> {
     return result;
   }
 
+  public async updateUser(id: string, obj: Partial<T>): Promise<T | null> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
+    return this.model.findByIdAndUpdate(
+      {_id: id},
+      {...obj},
+      {new: true},
+    )
+  }
+
 }
 
 export default AbstractODM

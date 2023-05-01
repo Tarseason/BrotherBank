@@ -2,7 +2,7 @@ import {Router} from 'express';
 import UserController from '../Controllers/UserController'
 
 const router = Router();
-const PATH_USER = 'user';
+const PATH_USER = '/user';
 
 router.post(
   PATH_USER,
@@ -17,6 +17,11 @@ router.get(
 router.get(
   `${PATH_USER}:id`,
   (req, res, next) => new UserController(req, res, next).getById(),
+)
+
+router.put(
+  `${PATH_USER}/:id`,
+  (req, res, next) => new UserController(req, res, next).updateUser();
 )
 
 export default router;

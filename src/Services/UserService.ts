@@ -25,6 +25,12 @@ class UserService {
     const user = await this.userODM.getById(id);
     return this.createUserDomain(user);
   }
+
+  public async updateUser(id: string, obj: IUser) {
+    const updateUser = await this.userODM.updateUser(id, obj);
+    if (!updateUser) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
+    return this.createUserDomain(updateUser);
+  }
 }
 
 export default UserService;

@@ -45,6 +45,18 @@ class UserController {
       return this.next(err);
     }
   }
+
+  public async updateUser() {
+    const user: IUser = { ...this.req.body };
+    const { id } = this.req.params;
+
+    try {
+      const updateUser = await this.service.updateUser(id, user);
+      return this.res.status(201).json(updateUser);
+    } catch (err) {
+      return this.next(err);
+    }
+  }
 }
 
 export default UserController
