@@ -14,6 +14,17 @@ class UserService {
     const newUser = await this.userODM.create(user);
     return this.createUserDomain(newUser)
   }
+
+  public async getAllUsers() {
+    const result = await this.userODM.getAll();
+    const users = result.map((user) => this.createUserDomain(user));
+    return users;
+  }
+
+  public async userById(id: string) {
+    const user = await this.userODM.getById(id);
+    return this.createUserDomain(user);
+  }
 }
 
 export default UserService;

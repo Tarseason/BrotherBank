@@ -25,6 +25,26 @@ class UserController {
       return this.next(err)
     }
   }
+
+  public async getAllUsers() {
+    try {
+      const users = await this.service.getAllUsers();
+      return this.res.status(200).json(users);
+    } catch (err) {
+      return this.next(err);
+    }
+  }
+
+  public async getById() {
+    const {id} = this.req.body;
+
+    try {
+      const user = await this.service.userById(id);
+      return this.res.status(200).json(user);
+    } catch (err) {
+      return this.next(err);
+    }
+  }
 }
 
 export default UserController
