@@ -21,7 +21,12 @@ router.get(
 
 router.put(
   `${PATH_USER}/:id`,
-  (req, res, next) => new UserController(req, res, next).updateUser();
+  (req, res, next) => new UserController(req, res, next).updateUser(),
+)
+
+router.post(
+  `${PATH_USER}/transaction`,
+  (req, res, next) => new UserController(req, res, next).balanceMoneyUser(),
 )
 
 export default router;
