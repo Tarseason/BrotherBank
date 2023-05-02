@@ -29,4 +29,9 @@ router.post(
   (req, res, next) => new UserController(req, res, next).balanceMoneyUser(),
 )
 
+router.get(
+  `${PATH_USER}/transaction`,
+  (req, res, next) => new UserController(req, res, next).getAllTransaction(),
+)
+
 export default router;

@@ -15,6 +15,12 @@ class TransactionService {
     const newTrans = await this.transactionODM.create(trans);
     return this.createTransactionDomain(newTrans)
   }
+
+  public async getAllTransaction() {
+    const result = await this.transactionODM.getAllTransaction();
+    const transactions = await result.map((trans) => this.createTransactionDomain(trans));
+    return transactions;
+  }
 }
 
 export default TransactionService;

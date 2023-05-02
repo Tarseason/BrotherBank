@@ -80,6 +80,15 @@ class UserController {
     } catch (err) {
       return this.next(err);
     }
+  }      
+  
+  public async getAllTransaction() {
+    try {
+      const transactions = await this.transService.getAllTransaction();
+      return this.res.status(200).json(transactions);
+    } catch (err) {
+      return this.next(err);
+    }
   }
 }
 

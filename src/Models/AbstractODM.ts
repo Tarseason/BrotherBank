@@ -45,6 +45,9 @@ abstract class AbstractODM<T> {
     )
   }
 
+  public async getAllTransaction(): Promise<T[]> {
+    return this.model.find({})
+  }
 }
 
 export default AbstractODM
