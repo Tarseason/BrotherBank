@@ -3,7 +3,7 @@ import {
   models,
   Schema,
   model,
-  isValidObjectId
+  isValidObjectId,
 } from 'mongoose';
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
@@ -18,11 +18,11 @@ abstract class AbstractODM<T> {
   constructor(schema: Schema, modelName: string) {
     this.schema = schema;
     this.modelName = modelName;
-    this.model = models[this.modelName] || model(this.modelName, this.schema)
+    this.model = models[this.modelName] || model(this.modelName, this.schema);
   }
 
   public async create(obj: T): Promise<T> {
-    return this.model.create({...obj})
+    return this.model.create({ ...obj });
   }
 
   public async getAll(): Promise<T[]> {
@@ -31,7 +31,7 @@ abstract class AbstractODM<T> {
 
   public async getById(id: string): Promise<T> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
-    const result = await this.model.findOne({_id: id});
+    const result = await this.model.findOne({ _id: id });
     if (!result) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
     return result;
   }
@@ -39,15 +39,15 @@ abstract class AbstractODM<T> {
   public async updateUser(id: string, obj: Partial<T>): Promise<T | null> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     return this.model.findByIdAndUpdate(
-      {_id: id},
-      {...obj},
-      {new: true},
-    )
+      { _id: id },
+      { ...obj },
+      { new: true },
+    );
   }
 
   public async getAllTransaction(): Promise<T[]> {
-    return this.model.find({})
+    return this.model.find({});
   }
 }
 
-export default AbstractODM
+export default AbstractODM;

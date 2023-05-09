@@ -23,10 +23,10 @@ class UserController {
     const user: IUser = this.req.body;
 
     try {
-      const newUser = await this.service.createUser(user)
+      const newUser = await this.service.createUser(user);
       return this.res.status(200).json(newUser);
     } catch (err) {
-      return this.next(err)
+      return this.next(err);
     }
   }
 
@@ -40,7 +40,7 @@ class UserController {
   }
 
   public async getById() {
-    const {id} = this.req.body;
+    const { id } = this.req.body;
 
     try {
       const user = await this.service.userById(id);
@@ -92,4 +92,4 @@ class UserController {
   }
 }
 
-export default UserController
+export default UserController;

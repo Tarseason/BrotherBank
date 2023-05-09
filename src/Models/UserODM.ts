@@ -9,8 +9,6 @@ class UserODM extends AbstractODM<IUser> {
       amountMoney: { type: Number, required: true },
       email: { type: String, required: true },
       password: { type: String, required: true },
-      agency: { type: Number, required: true },
-      account: { type: Number, required: true },
     });
     super(schema, 'User');
   }
