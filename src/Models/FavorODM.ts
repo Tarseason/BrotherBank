@@ -9,6 +9,7 @@ class FavorODM extends AbstractODM<IFavor> {
       requestedFavorId: { type: String, required: true },
       amountOffered: { type: Number, required: true },
       description: { type: String, required: true },
+      type: { type: String, required: true },
     });
     super(schema, 'Favors');
   }
