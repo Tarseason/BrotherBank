@@ -6,8 +6,6 @@ export default class User {
   public amountMoney: number;
   public email: string;
   public password?: string;
-  public agency: number;
-  public account: number;
 
   constructor(user: IUser) {
     this.id = user.id;
@@ -15,8 +13,6 @@ export default class User {
     this.amountMoney = user.amountMoney;
     this.email = user.email;
     this.password = user.password;
-    this.agency = user.agency;
-    this.account = user.account;
   }
 
   getId() {
@@ -54,19 +50,5 @@ export default class User {
 
   setPassword(value:string) {
     this.password = value;
-  }
-  getAgency() {
-    return this.agency;
-  }
-
-  setAgency(value: number) {
-    this.agency = value;
-  }
-  getAccount() {
-    return this.account;
-  }
-
-  setAccount(value: number) {
-    this.account = value;
   }
 }

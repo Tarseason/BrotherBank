@@ -4,6 +4,4 @@ export default interface IUser {
   amountMoney: number, 
   email: string, 
   password?: string, 
-  agency: number, 
-  account: number
 }
