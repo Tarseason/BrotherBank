@@ -48,6 +48,10 @@ abstract class AbstractODM<T> {
   public async getAllTransaction(): Promise<T[]> {
     return this.model.find({});
   }
+
+  public async getAllFavors(type: string): Promise<T[]> {
+    return this.model.find({ type });
+  }
 }
 
 export default AbstractODM;
