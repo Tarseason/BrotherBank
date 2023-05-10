@@ -54,7 +54,12 @@ abstract class AbstractODM<T> {
   }
 
   public async getFavorById(id: string | undefined): Promise<T[]> {
-    return this.model.find({ requestedFavorId: id });
+    return this.model.find(
+      { $and: [
+        { requestedFavorId: id },
+        { type: 'direct' },
+      ] },
+    );
   }
 }
 

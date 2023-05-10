@@ -2,7 +2,7 @@
   tags do tipo especialidades da pessoa <Designe, Art, Textos, Programação>
 
 ° Refatorar User para adicionar um novo campo do tipo array onde ira conter
-  array de favores pendentes
+  array de favores pendentes 'FEITO' ajustar para exibir tbm o nome do pedinte
   array de favores aceitos
   array de favores concluidos
   array de amigos

@@ -14,11 +14,6 @@ router.get(
   (req, res, next) => new UserController(req, res, next).getAllUsers(),
 );
 
-router.post(
-  `${PATH_USER}/find`,
-  (req, res, next) => new UserController(req, res, next).getById(),
-);
-
 router.put(
   `${PATH_USER}/:id`,
   (req, res, next) => new UserController(req, res, next).updateUser(),
@@ -32,6 +27,11 @@ router.post(
 router.get(
   `${PATH_USER}/transaction`,
   (req, res, next) => new UserController(req, res, next).getAllTransaction(),
+);
+
+router.post(
+  `${PATH_USER}/find`,
+  (req, res, next) => new UserController(req, res, next).getById(),
 );
 
 export default router;
