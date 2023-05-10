@@ -16,7 +16,7 @@ export default class FavorService {
     return this.createFavorDomain(newFavor);
   }
 
-  public async getAllFavors(type: string) {
+  public async getAllFavors(type: string | undefined) {
     if (type === TypeFavor.DIRECT) {
       const result = await this.favorODM.getAllFavors(type);
       const allFavors = result.map((favor) => this.createFavorDomain(favor));
