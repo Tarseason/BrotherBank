@@ -14,8 +14,8 @@ router.get(
   (req, res, next) => new UserController(req, res, next).getAllUsers(),
 );
 
-router.get(
-  `${PATH_USER}:id`,
+router.post(
+  `${PATH_USER}/find`,
   (req, res, next) => new UserController(req, res, next).getById(),
 );
 

@@ -3,6 +3,7 @@ import IUser from '../Interfaces/IUser';
 import UserService from '../Services/UserService';
 import ITransaction from '../Interfaces/ITransaction';
 import TransactionService from '../Services/TransactionService';
+import FavorService from '../Services/FavorService';
 
 class UserController {
   private req: Request;
@@ -10,6 +11,7 @@ class UserController {
   private next: NextFunction;
   private service: UserService;
   private transService: TransactionService;
+  private favorService: FavorService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
     this.req = req;
@@ -17,6 +19,7 @@ class UserController {
     this.next = next;
     this.service = new UserService();
     this.transService = new TransactionService();
+    this.favorService = new FavorService();
   }
 
   public async create() {
@@ -44,6 +47,8 @@ class UserController {
 
     try {
       const user = await this.service.userById(id);
+      const favors = await this.favorService.getFavorById(user.id);
+      user.setPendingFavor(favors);
       return this.res.status(200).json(user);
     } catch (err) {
       return this.next(err);

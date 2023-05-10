@@ -52,6 +52,10 @@ abstract class AbstractODM<T> {
   public async getAllFavors(type: string): Promise<T[]> {
     return this.model.find({ type });
   }
+
+  public async getFavorById(id: string | undefined): Promise<T[]> {
+    return this.model.find({ requestedFavorId: id });
+  }
 }
 
 export default AbstractODM;

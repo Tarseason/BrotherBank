@@ -1,3 +1,4 @@
+import IFavor from '../Interfaces/IFavors';
 import IUser from '../Interfaces/IUser';
 
 export default class User {
@@ -6,6 +7,7 @@ export default class User {
   public amountMoney: number;
   public email: string;
   public password?: string;
+  public pendingFavors: Array<IFavor>;
 
   constructor(user: IUser) {
     this.id = user.id;
@@ -13,6 +15,7 @@ export default class User {
     this.amountMoney = user.amountMoney;
     this.email = user.email;
     this.password = user.password;
+    this.pendingFavors = this.getPendingFavors();
   }
 
   getId() {
@@ -50,5 +53,13 @@ export default class User {
 
   setPassword(value:string) {
     this.password = value;
+  }
+
+  getPendingFavors() {
+    return this.pendingFavors;
+  }
+
+  setPendingFavor(favors: Array<IFavor>) {
+    this.pendingFavors = favors;
   }
 }

@@ -28,4 +28,10 @@ export default class FavorService {
       return allFavors;
     }
   }
+
+  public async getFavorById(id: string | undefined) {
+    const result = await this.favorODM.getFavorById(id);
+    const favors = result.map((favor) => this.createFavorDomain(favor));
+    return favors;
+  }
 }
