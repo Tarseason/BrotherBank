@@ -7,6 +7,7 @@ import {
 } from 'mongoose';
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
+import TypeFavor from '../Utils/FavorType';
 
 const INVALID_MONGO_ID = 'Invalid mongo id';
 
@@ -79,6 +80,15 @@ abstract class AbstractODM<T> {
       ] },
       { _id: 1 },
     );
+  }
+
+  public async getDirectFavor(id: string): Promise<T[]> {
+    return this.model.find({
+      $and: [
+        { requestedFavorId: id },
+        { type: TypeFavor.DIRECT },
+      ],
+    });
   }
 }
 

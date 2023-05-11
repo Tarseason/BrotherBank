@@ -13,4 +13,9 @@ router.get(
   (req, res, next) => new FavorController(req, res, next).getAllFavors(),
 );
 
+router.get(
+  '/favor/direct/:id',
+  (req, res, next) => new FavorController(req, res, next).getDirectFavors(),
+);
+
 export default router;

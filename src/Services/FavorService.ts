@@ -24,6 +24,12 @@ export default class FavorService {
     return allFavors;
   }
 
+  public async getDirectFavors(id: string) {
+    const result = await this.favorODM.getDirectFavor(id);
+    const allFavors = result.map((favor) => this.createFavorDomain(favor));
+    return allFavors;
+  }
+
   public async getFavorById(id: string | undefined) {
     const result = await this.favorODM.getFavorById(id);
     const favors = result.map((favor) => this.createFavorDomain(favor));

@@ -33,6 +33,16 @@ class FavorController {
       return this.next(err);
     }
   }
+
+  public async getDirectFavors() {
+    const { id } = this.req.params;
+    try {
+      const favor = await this.service.getDirectFavors(id);
+      return this.res.status(200).json(favor);
+    } catch (err) {
+      return this.next(err);
+    }
+  }
 }
 
 export default FavorController;
