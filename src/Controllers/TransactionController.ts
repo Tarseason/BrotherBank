@@ -20,11 +20,11 @@ class TransactionController {
 
   public async transactionCreate() {
     const transfer: ITransaction = { ...this.req.body };
-
-    const payingUser = await this.userService.userById(transfer.payingUserId);
-    const receivingUser = await this.userService.userById(transfer.receivingUserId);
-
+    
     try {
+      const payingUser = await this.userService.userById(transfer.payingUserId);
+      const receivingUser = await this.userService.userById(transfer.receivingUserId);
+
       const stepOne = await this.service.balanceMoneyUser(payingUser, transfer);
       const stepTwo = await this.service.balanceMoneyUser(receivingUser, transfer);
 

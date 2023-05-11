@@ -20,7 +20,7 @@ class TransactionService {
   }
 
   public async getAllTransaction() {
-    const result = await this.transactionODM.getAllTransaction();
+    const result = await this.transactionODM.getAll();
     const transactions = await result.map((trans) => this.createTransactionDomain(trans));
     return transactions;
   }

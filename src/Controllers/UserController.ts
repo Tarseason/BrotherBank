@@ -1,24 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
 import IUser from '../Interfaces/IUser';
 import UserService from '../Services/UserService';
-import TransactionService from '../Services/TransactionService';
-import FavorService from '../Services/FavorService';
 
 class UserController {
   private req: Request;
   private res: Response;
   private next: NextFunction;
   private service: UserService;
-  private transService: TransactionService;
-  private favorService: FavorService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
     this.req = req;
     this.res = res;
     this.next = next;
     this.service = new UserService();
-    this.transService = new TransactionService();
-    this.favorService = new FavorService();
   }
 
   public async create() {
