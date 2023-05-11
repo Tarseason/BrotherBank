@@ -24,4 +24,9 @@ router.put(
   (req, res, next) => new UserController(req, res, next).updateUser(),
 );
 
+router.delete(
+  `${PATH_USER}/:id`,
+  (req, res, next) => new UserController(req, res, next).deleteUser(),  
+);
+
 export default router;

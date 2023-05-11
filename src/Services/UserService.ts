@@ -31,6 +31,11 @@ class UserService {
     if (!updateUser) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
     return this.createUserDomain(updateUser);
   }
+
+  public async deleteUser(id: string) {
+    await this.userODM.delete(id);
+    return true;
+  }
 }
 
 export default UserService;

@@ -62,6 +62,17 @@ class UserController {
       return this.next(err);
     }
   }
+
+  public async deleteUser() {
+    const { id } = this.req.params;
+
+    try {
+      await this.service.deleteUser(id);
+      return this.res.status(204).json({ message: 'User deleted! :(' });
+    } catch (err) {
+      return this.next(err);
+    }
+  }
 }
 
 export default UserController;

@@ -45,6 +45,12 @@ abstract class AbstractODM<T> {
     );
   }
 
+  public async delete(id: string) {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
+    await this.model.findByIdAndDelete({ _id: id });
+    return true;
+  }
+
   public async getAllTransaction(): Promise<T[]> {
     return this.model.find({});
   }
