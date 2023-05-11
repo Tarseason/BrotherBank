@@ -21,7 +21,13 @@ class TransactionService {
 
   public async getAllTransaction() {
     const result = await this.transactionODM.getAll();
-    const transactions = await result.map((trans) => this.createTransactionDomain(trans));
+    const transactions = result.map((trans) => this.createTransactionDomain(trans));
+    return transactions;
+  }
+
+  public async byIdTransaction(id: string) {
+    const result = await this.transactionODM.byIdTransaction(id);
+    const transactions = result.map((trans) => this.createTransactionDomain(trans));
     return transactions;
   }
 

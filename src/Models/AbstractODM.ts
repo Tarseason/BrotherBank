@@ -36,6 +36,22 @@ abstract class AbstractODM<T> {
     return result;
   }
 
+  public async byIdTransaction(id: string): Promise<T[]> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
+    const result = await this.model.find({
+      $and: [
+        {
+          $or: [
+            { payingUserId: id },
+            { receivingUserId: id },
+          ],
+        },
+      ],
+    });
+    if (!result) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'Transfer not exists');
+    return result;
+  }
+
   public async updateUser(id: string | undefined, obj: Partial<T>): Promise<T | null> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     return this.model.findByIdAndUpdate(

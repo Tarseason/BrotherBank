@@ -46,6 +46,17 @@ class TransactionController {
       return this.next(err);
     }
   }
+
+  public async byIdTransaction() {
+    const { id } = this.req.params;
+
+    try {
+      const result = await this.service.byIdTransaction(id);
+      return this.res.status(200).json(result);
+    } catch (err) {
+      return this.next(err);
+    }
+  }
 }
 
 export default TransactionController;

@@ -13,4 +13,9 @@ router.get(
   (req, res, next) => new TransactionController(req, res, next).getAllTransaction(),
 );
 
+router.get(
+  '/transaction/:id',
+  (req, res, next) => new TransactionController(req, res, next).byIdTransaction(),
+);
+
 export default router;
