@@ -25,10 +25,9 @@ class FavorController {
     }
   }
 
-  public async getFavor() {
-    const { type } = this.req.body;
+  public async getAllFavors() {
     try {
-      const favor = await this.service.getAllFavors(type);
+      const favor = await this.service.getAllFavors();
       return this.res.status(200).json(favor);
     } catch (err) {
       return this.next(err);

@@ -8,9 +8,9 @@ router.post(
   (req, res, next) => new FavorController(req, res, next).create(),
 );
 
-router.post(
-  '/favor/get',
-  (req, res, next) => new FavorController(req, res, next).getFavor(),
+router.get(
+  '/favor',
+  (req, res, next) => new FavorController(req, res, next).getAllFavors(),
 );
 
 export default router;

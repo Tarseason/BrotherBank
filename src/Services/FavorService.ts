@@ -3,7 +3,7 @@ import Favor from '../Domains/Favor';
 import FavorODM from '../Models/FavorODM';
 // import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 // import HTTPCodes from '../Utils/HTTPCodes';
-import TypeFavor from '../Utils/FavorType';
+// import TypeFavor from '../Utils/FavorType';
 import DirectFavorODM from '../Models/FavorAccepted';
 
 export default class FavorService {
@@ -18,17 +18,10 @@ export default class FavorService {
     return this.createFavorDomain(newFavor);
   }
 
-  public async getAllFavors(type: string | undefined) {
-    if (type === TypeFavor.DIRECT) {
-      const result = await this.favorODM.getAllFavors(type);
-      const allFavors = result.map((favor) => this.createFavorDomain(favor));
-      return allFavors;
-    }
-    if (type === TypeFavor.GLOBAL) {
-      const result = await this.favorODM.getAllFavors(type);
-      const allFavors = result.map((favor) => this.createFavorDomain(favor));
-      return allFavors;
-    }
+  public async getAllFavors() {
+    const result = await this.favorODM.getAll();
+    const allFavors = result.map((favor) => this.createFavorDomain(favor));
+    return allFavors;
   }
 
   public async getFavorById(id: string | undefined) {
