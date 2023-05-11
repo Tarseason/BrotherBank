@@ -22,4 +22,11 @@ router.get(
   '/favor/global',
   (req, res, next) => new FavorController(req, res, next).getGlobalFavors(),
 );
+
+// ID de quem aceitou vai no parametro
+router.post(
+  '/favor/global/accept/:id',
+  (req, res, next) => new FavorController(req, res, next).acceptGlobalFavor(),
+);
+
 export default router;

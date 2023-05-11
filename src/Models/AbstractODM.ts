@@ -62,24 +62,21 @@ abstract class AbstractODM<T> {
     );
   }
 
-  public async delete(id: string) {
+  public async delete(id: string | undefined) {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     await this.model.findByIdAndDelete({ _id: id });
     return true;
   }
 
-  public async getAllFavors(type: string): Promise<T[]> {
+  public async getAllFavors(type: string | undefined): Promise<T[]> {
     return this.model.find({ type });
   }
 
-  public async getFavorById(id: string | undefined): Promise<T[]> {
-    return this.model.find(
-      { $and: [
-        { requestedFavorId: id },
-        { type: 'direct' },
-      ] },
-      { _id: 1 },
-    );
+  public async getFavorById(id: string | undefined): Promise<T | null> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
+    const result = this.model.findOne({ _id: id });
+    if (!result) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'Favor nao encontrado');
+    return result;
   }
 
   public async getDirectFavor(id: string): Promise<T[]> {

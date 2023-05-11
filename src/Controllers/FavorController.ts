@@ -52,6 +52,17 @@ class FavorController {
       return this.next(err);
     }
   }
+
+  public async acceptGlobalFavor() {
+    const { id } = this.req.params;
+    const favor: IFavor = { ...this.req.body };
+    try {
+      await this.service.acceptGlobalFavor(id, favor);
+      return this.res.status(200).json({ message: 'Favor pedido aceito!' });
+    } catch (err) {
+      return this.next(err);
+    } 
+  }
 }
 
 export default FavorController;
