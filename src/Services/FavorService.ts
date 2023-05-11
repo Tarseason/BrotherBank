@@ -61,4 +61,17 @@ export default class FavorService {
     await this.favorODM.delete(favor.id);
     return true;
   }
+
+  public async getAcceptFavors(id: string) {
+    const result = await this.acceptFavorODM.getAcceptFavors(id);
+    const accepteds = result.map((accept) => this.createFavorDomain(accept));
+    return accepteds;
+  }
+
+  public async acceptDirectFavor(id: string, favor: IFavor) {
+    await this.getFavorById(favor.id);
+    await this.acceptFavorODM.create(favor);
+    await this.favorODM.delete(favor.id);
+    return true;
+  }
 }

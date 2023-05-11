@@ -8,6 +8,7 @@ import {
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
 import TypeFavor from '../Utils/FavorType';
+// import IFavor from '../Interfaces/IFavors';
 
 const INVALID_MONGO_ID = 'Invalid mongo id';
 
@@ -79,6 +80,7 @@ abstract class AbstractODM<T> {
     return result;
   }
 
+  // Repensar nessa função! Nao parece adequada!
   public async getDirectFavor(id: string): Promise<T[]> {
     return this.model.find({
       $and: [
@@ -90,6 +92,10 @@ abstract class AbstractODM<T> {
 
   public async getGlobalFavors(): Promise<T[]> {
     return this.model.find({ type: TypeFavor.GLOBAL });
+  }
+
+  public async getAcceptFavors(id: string): Promise<T[]> {
+    return this.model.find({ requestedFavorId: id });
   }
 }
 

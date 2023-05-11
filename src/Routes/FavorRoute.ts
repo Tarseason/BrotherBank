@@ -23,10 +23,22 @@ router.get(
   (req, res, next) => new FavorController(req, res, next).getGlobalFavors(),
 );
 
-// ID de quem aceitou vai no parametro
+// ID do usuario que vai no parametro
 router.post(
   '/favor/global/accept/:id',
   (req, res, next) => new FavorController(req, res, next).acceptGlobalFavor(),
+);
+
+// ID do usuario que vai no parametro
+router.get(
+  '/favor/global/accept/:id',
+  (req, res, next) => new FavorController(req, res, next).getAcceptFavors(),
+);
+
+// ID do usuario que vai no parametro
+router.post(
+  '/favor/direct/accept/:id',
+  (req, res, next) => new FavorController(req, res, next).acceptDirectFavor(),
 );
 
 export default router;
