@@ -1,6 +1,9 @@
 import Transaction from '../Domains/Transaction';
 import ITransaction from '../Interfaces/ITransaction';
+import IUser from '../Interfaces/IUser';
+import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import TransactionODM from '../Models/TransactionODM';
+import HTTPCodes from '../Utils/HTTPCodes';
 
 class TransactionService {
   private transactionODM = new TransactionODM();
@@ -13,13 +16,32 @@ class TransactionService {
 
   public async createTransaction(trans: ITransaction) {
     const newTrans = await this.transactionODM.create(trans);
-    return this.createTransactionDomain(newTrans)
+    return this.createTransactionDomain(newTrans);
   }
 
   public async getAllTransaction() {
     const result = await this.transactionODM.getAllTransaction();
     const transactions = await result.map((trans) => this.createTransactionDomain(trans));
     return transactions;
+  }
+
+  public async balanceMoneyUser(user: IUser, obj: ITransaction) {
+    if (user.id === obj.payingUserId) {
+      if (user.amountMoney < obj.amountPaid) {
+        throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, 'Saldo insuficiente');
+      }
+      const balanceMoney = {
+        ...user,
+        amountMoney: user.amountMoney - obj.amountPaid,
+      };
+      return balanceMoney;
+    }
+
+    const balanceMoney = {
+      ...user,
+      amountMoney: user.amountMoney + obj.amountPaid,
+    };
+    return balanceMoney;
   }
 }
 

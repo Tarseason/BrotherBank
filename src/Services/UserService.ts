@@ -3,7 +3,6 @@ import IUser from '../Interfaces/IUser';
 import UserODM from '../Models/UserODM';
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
-import ITransaction from '../Interfaces/ITransaction';
 
 class UserService {
   private userODM = new UserODM();
@@ -31,25 +30,6 @@ class UserService {
     const updateUser = await this.userODM.updateUser(id, obj);
     if (!updateUser) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
     return this.createUserDomain(updateUser);
-  }
-
-  public async balanceMoneyUser(user: IUser, obj: ITransaction) {
-    if (user.id === obj.payingUserId) {
-      if (user.amountMoney < obj.amountPaid) {
-        throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, 'Saldo insuficiente');
-      }
-      const balanceMoney = {
-        ...user,
-        amountMoney: user.amountMoney - obj.amountPaid,
-      };
-      return balanceMoney;
-    }
-
-    const balanceMoney = {
-      ...user,
-      amountMoney: user.amountMoney + obj.amountPaid,
-    };
-    return balanceMoney;
   }
 }
 

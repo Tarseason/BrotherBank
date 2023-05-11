@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import IUser from '../Interfaces/IUser';
 import UserService from '../Services/UserService';
-import ITransaction from '../Interfaces/ITransaction';
 import TransactionService from '../Services/TransactionService';
 import FavorService from '../Services/FavorService';
 
@@ -47,8 +46,6 @@ class UserController {
 
     try {
       const user = await this.service.userById(id);
-      const favors = await this.favorService.getFavorById(user.id);
-      user.setPendingFavor(favors);
       return this.res.status(200).json(user);
     } catch (err) {
       return this.next(err);
@@ -62,35 +59,6 @@ class UserController {
     try {
       const updateUser = await this.service.updateUser(id, user);
       return this.res.status(201).json(updateUser);
-    } catch (err) {
-      return this.next(err);
-    }
-  }
-
-  public async balanceMoneyUser() {
-    const transfer: ITransaction = { ...this.req.body };
-
-    const payingUser = await this.service.userById(transfer.payingUserId);
-    const receivingUser = await this.service.userById(transfer.receivingUserId);
-
-    try {
-      const stepOne = await this.service.balanceMoneyUser(payingUser, transfer);
-      const stepTwo = await this.service.balanceMoneyUser(receivingUser, transfer);
-
-      await this.service.updateUser(transfer.payingUserId, stepOne);
-      await this.service.updateUser(transfer.receivingUserId, stepTwo);
-
-      const transaction = await this.transService.createTransaction(transfer);
-      return this.res.status(201).json(transaction);
-    } catch (err) {
-      return this.next(err);
-    }
-  }      
-  
-  public async getAllTransaction() {
-    try {
-      const transactions = await this.transService.getAllTransaction();
-      return this.res.status(200).json(transactions);
     } catch (err) {
       return this.next(err);
     }
