@@ -36,7 +36,7 @@ abstract class AbstractODM<T> {
     return result;
   }
 
-  public async updateUser(id: string, obj: Partial<T>): Promise<T | null> {
+  public async updateUser(id: string | undefined, obj: Partial<T>): Promise<T | null> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     return this.model.findByIdAndUpdate(
       { _id: id },
@@ -59,6 +59,7 @@ abstract class AbstractODM<T> {
         { requestedFavorId: id },
         { type: 'direct' },
       ] },
+      { _id: 1 },
     );
   }
 }

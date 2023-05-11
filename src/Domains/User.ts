@@ -8,6 +8,7 @@ export default class User {
   public email: string;
   public password?: string;
   public pendingFavors: Array<IFavor>;
+  public acceptedFavors: Array<IFavor>;
 
   constructor(user: IUser) {
     this.id = user.id;
@@ -16,6 +17,7 @@ export default class User {
     this.email = user.email;
     this.password = user.password;
     this.pendingFavors = this.getPendingFavors();
+    this.acceptedFavors = this.getAcceptedFavors();
   }
 
   getId() {
@@ -61,5 +63,13 @@ export default class User {
 
   setPendingFavor(favors: Array<IFavor>) {
     this.pendingFavors = favors;
+  }
+
+  getAcceptedFavors() {
+    return this.acceptedFavors;
+  }
+
+  setAcceptedFavors(favors: Array<IFavor>) {
+    this.acceptedFavors = favors;
   }
 }

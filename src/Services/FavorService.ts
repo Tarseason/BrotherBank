@@ -4,10 +4,12 @@ import FavorODM from '../Models/FavorODM';
 // import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 // import HTTPCodes from '../Utils/HTTPCodes';
 import TypeFavor from '../Utils/FavorType';
+import DirectFavorODM from '../Models/FavorAccepted';
 
 export default class FavorService {
   private favorODM = new FavorODM();
-  public createFavorDomain(favor: IFavor): Favor {
+  private directFavorODM = new DirectFavorODM();
+  private createFavorDomain(favor: IFavor): Favor {
     return new Favor(favor);
   }
 
