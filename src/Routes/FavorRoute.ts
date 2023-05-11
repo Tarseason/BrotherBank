@@ -18,4 +18,8 @@ router.get(
   (req, res, next) => new FavorController(req, res, next).getDirectFavors(),
 );
 
+router.get(
+  '/favor/global',
+  (req, res, next) => new FavorController(req, res, next).getGlobalFavors(),
+);
 export default router;

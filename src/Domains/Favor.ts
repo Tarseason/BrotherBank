@@ -4,7 +4,7 @@ import TypeFavor from '../Utils/FavorType';
 export default class Favor {
   public id?: string;
   public requestingFavorId: string;
-  public requestedFavorId: string;
+  public requestedFavorId?: string;
   public amountOffered: number;
   public description: string;
   public type: TypeFavor;

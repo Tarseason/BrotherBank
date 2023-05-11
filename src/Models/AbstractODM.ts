@@ -90,6 +90,10 @@ abstract class AbstractODM<T> {
       ],
     });
   }
+
+  public async getGlobalFavors(): Promise<T[]> {
+    return this.model.find({ type: TypeFavor.GLOBAL });
+  }
 }
 
 export default AbstractODM;
