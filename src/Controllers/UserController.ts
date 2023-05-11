@@ -42,8 +42,7 @@ class UserController {
   }
 
   public async getById() {
-    const { id } = this.req.body;
-
+    const { id } = this.req.params;
     try {
       const user = await this.service.userById(id);
       return this.res.status(200).json(user);

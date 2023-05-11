@@ -1,3 +1,8 @@
+Prioridade*
+  Criar tabelas para favors aceitas;
+  Criar tabelas para favors concluidas;
+  -- CRUD em cada uma das Tabelas;
+
 ° Refatorar para User para adicionar um campo do tipo tags
   tags do tipo especialidades da pessoa <Designe, Art, Textos, Programação>
 
