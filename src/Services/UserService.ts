@@ -23,6 +23,7 @@ class UserService {
 
   public async userById(id: string) {
     const user = await this.userODM.getById(id);
+    if (!user) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
     return this.createUserDomain(user);
   }
 

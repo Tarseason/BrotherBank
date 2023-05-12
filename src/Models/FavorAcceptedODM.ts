@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import AbstractODM from './AbstractODM';
 import IFavor from '../Interfaces/IFavors';
+import AbstractODM from './AbstractODM';
 
 class FavorAcceptedODM extends AbstractODM<IFavor> {
   constructor() {

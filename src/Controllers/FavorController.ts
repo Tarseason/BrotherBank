@@ -25,9 +25,9 @@ class FavorController {
     }
   }
 
-  public async getAllFavors() {
+  public async getGlobalFavors() {
     try {
-      const favor = await this.service.getAllFavors();
+      const favor = await this.service.getGlobalFavors();
       return this.res.status(200).json(favor);
     } catch (err) {
       return this.next(err);
@@ -39,58 +39,6 @@ class FavorController {
     try {
       const favor = await this.service.getDirectFavors(id);
       return this.res.status(200).json(favor);
-    } catch (err) {
-      return this.next(err);
-    }
-  }
-
-  public async getGlobalFavors() {
-    try {
-      const favor = await this.service.getGlobalFavors();
-      return this.res.status(200).json(favor);
-    } catch (err) {
-      return this.next(err);
-    }
-  }
-
-  public async acceptGlobalFavor() {
-    const { id } = this.req.params;
-    const favor: IFavor = { ...this.req.body };
-    try {
-      await this.service.acceptGlobalFavor(id, favor);
-      return this.res.status(200).json({ message: 'Favor pedido aceito! :)' });
-    } catch (err) {
-      return this.next(err);
-    } 
-  }
-
-  public async getAcceptFavors() {
-    const { id } = this.req.params;
-    try {
-      const accepteds = await this.service.getAcceptFavors(id);
-      return this.res.status(200).json(accepteds);
-    } catch (err) {
-      return this.next(err);
-    }
-  }
-
-  public async acceptDirectFavor() {
-    const { id } = this.req.params;
-    const favor: IFavor = { ...this.req.body };
-    try {
-      await this.service.acceptDirectFavor(id, favor);
-      return this.res.status(200).json({ message: 'Favor pedido aceito! :)' });
-    } catch (err) {
-      return this.next(err);
-    }
-  }
-
-  public async concludedFavor() {
-    const favor: IFavor = this.req.body;
-    try {
-      await this.service.concludedFavor(favor);
-      console.log('e');
-      return this.res.status(200).json({ message: 'Favor concluido!' });
     } catch (err) {
       return this.next(err);
     }
