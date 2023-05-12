@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 import AbstractODM from './AbstractODM';
 import IFavor from '../Interfaces/IFavors';
 
-class FavorAcceptedODM extends AbstractODM<IFavor> {
+class FavorConcludedODM extends AbstractODM<IFavor> {
   constructor() {
     const schema = new Schema<IFavor>({
       requestingFavorId: { type: String, required: true },
@@ -11,8 +11,8 @@ class FavorAcceptedODM extends AbstractODM<IFavor> {
       description: { type: String, required: true },
       type: { type: String, required: true },
     });
-    super(schema, 'AcceptFavors');
+    super(schema, 'ConcludedFavors');
   }
 }
 
-export default FavorAcceptedODM;
+export default FavorConcludedODM;

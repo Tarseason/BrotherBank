@@ -5,10 +5,12 @@ import FavorAccepted from '../Models/FavorAccepted';
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
 import TypeFavor from '../Utils/FavorType';
+import FavorConcludedODM from '../Models/FavorConcludedODM';
 
 export default class FavorService {
   private favorODM = new FavorODM();
   private acceptFavorODM = new FavorAccepted();
+  private concludedFavorODM = new FavorConcludedODM();
   private createFavorDomain(favor: IFavor): Favor {
     return new Favor(favor);
   }
@@ -72,6 +74,18 @@ export default class FavorService {
     await this.getFavorById(favor.id);
     await this.acceptFavorODM.create(favor);
     await this.favorODM.delete(favor.id);
+    return true;
+  }
+
+  public async concludedFavor(favor: IFavor) {
+    const result = await this.acceptFavorODM.byIdAcceptFavor(favor.id);
+    console.log('c');
+    if (!result) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'Favor nao encontrado');
+    console.log('d');
+    await this.concludedFavorODM.create(favor);
+    console.log('e');
+    await this.acceptFavorODM.delete(favor.id);
+    console.log('f');
     return true;
   }
 }

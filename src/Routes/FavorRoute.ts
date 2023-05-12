@@ -41,4 +41,9 @@ router.post(
   (req, res, next) => new FavorController(req, res, next).acceptDirectFavor(),
 );
 
+router.post(
+  '/favor/concluded',
+  (req, res, next) => new FavorController(req, res, next).concludedFavor(),
+);
+
 export default router;

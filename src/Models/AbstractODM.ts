@@ -65,7 +65,7 @@ abstract class AbstractODM<T> {
 
   public async delete(id: string | undefined) {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
-    await this.model.findByIdAndDelete({ _id: id });
+    await this.model.findByIdAndDelete({ id });
     return true;
   }
 
@@ -75,13 +75,14 @@ abstract class AbstractODM<T> {
 
   public async getFavorById(id: string | undefined): Promise<T | null> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
-    const result = this.model.findOne({ _id: id });
+    const result = await this.model.findOne({ _id: id });
     if (!result) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'Favor nao encontrado');
     return result;
   }
 
   // Repensar nessa função! Nao parece adequada!
   public async getDirectFavor(id: string): Promise<T[]> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     return this.model.find({
       $and: [
         { requestedFavorId: id },
@@ -95,7 +96,14 @@ abstract class AbstractODM<T> {
   }
 
   public async getAcceptFavors(id: string): Promise<T[]> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     return this.model.find({ requestedFavorId: id });
+  }
+
+  public async byIdAcceptFavor(id: string | undefined): Promise<T | null> {
+    if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
+    const result = await this.model.findOne({ id });
+    return result;
   }
 }
 

@@ -79,7 +79,18 @@ class FavorController {
     const favor: IFavor = { ...this.req.body };
     try {
       await this.service.acceptDirectFavor(id, favor);
-      return this.res.status(200).json({ message: 'Favor concluido! :)' });
+      return this.res.status(200).json({ message: 'Favor pedido aceito! :)' });
+    } catch (err) {
+      return this.next(err);
+    }
+  }
+
+  public async concludedFavor() {
+    const favor: IFavor = this.req.body;
+    try {
+      await this.service.concludedFavor(favor);
+      console.log('e');
+      return this.res.status(200).json({ message: 'Favor concluido!' });
     } catch (err) {
       return this.next(err);
     }
