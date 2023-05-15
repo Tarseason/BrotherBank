@@ -29,4 +29,9 @@ router.delete(
   (req, res, next) => new UserController(req, res, next).deleteUser(),  
 );
 
+router.post(
+  ('/login'),
+  (req, res, next) => new UserController(req, res, next).login(),
+);
+
 export default router;

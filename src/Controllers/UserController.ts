@@ -26,6 +26,13 @@ class UserController {
     }
   }
 
+  public async login() {
+    const { email, password } = this.req.body;
+
+    const token = await this.service.login({ email, password });
+    return this.res.status(201).json({ token });
+  }
+
   public async getAllUsers() {
     try {
       const users = await this.service.getAllUsers();

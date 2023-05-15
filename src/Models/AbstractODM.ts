@@ -42,6 +42,12 @@ abstract class AbstractODM<T> {
     return result;
   }
 
+  public async loginUser(email: string, password: string): Promise<T> {
+    const user = await this.model.findOne({ email, password }, { password: 0 });
+    if (!user) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, 'User not found');
+    return user;
+  }
+
   public async byIdTransaction(id: string): Promise<T[]> {
     if (!isValidObjectId(id)) throw new ErrorHTTP(HTTPCodes.NOT_AUTHORIZATED, INVALID_MONGO_ID);
     const result = await this.model.find({
