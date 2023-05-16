@@ -4,7 +4,7 @@ import UserODM from '../Models/UserODM';
 import ErrorHTTP from '../Middlewares/Helpers/ErrorHTTP';
 import HTTPCodes from '../Utils/HTTPCodes';
 import ILogin from '../Interfaces/ILogin';
-import createJWT from '../Utils/JWTfunctions';
+import { createJWT } from '../Utils/JWTfunctions';
 
 const MESSAGEG_ERROR_USER = 'User not found';
 

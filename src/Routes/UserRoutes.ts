@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import UserController from '../Controllers/UserController';
+import AuthToken from '../Middlewares/JWT';
 
 const router = Router();
+const Jwt = new AuthToken();
 const PATH_USER = '/user';
 
 router.post(
@@ -11,6 +13,7 @@ router.post(
 
 router.get(
   PATH_USER,
+  (req, res, next) => Jwt.verifyToken(req, res, next),
   (req, res, next) => new UserController(req, res, next).getAllUsers(),
 );
 

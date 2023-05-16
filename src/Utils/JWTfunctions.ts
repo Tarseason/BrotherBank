@@ -7,7 +7,6 @@ const jwtConfig: SignOptions = {
   expiresIn: '12d',
 };
 
-const createJWT = (payload: any) => 
-  JWT.sign(payload, JWT_SECRET, jwtConfig);
+export const createJWT = (payload: any) => JWT.sign(payload, JWT_SECRET, jwtConfig);
 
-export default createJWT;
+export const verifyJwt = (token: string) => JWT.verify(token, JWT_SECRET);
