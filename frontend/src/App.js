@@ -4,6 +4,7 @@ import RootLayout from "./pages/Root";
 import LoginPage from "./pages/LoginPage";
 import HeroRootLayout from "./pages/HeroRootLayout";
 import Welcome from "./pages/Welcome";
+import Home from './pages/Home'
 
 const router = createBrowserRouter([
   {
@@ -15,18 +16,8 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <RootLayout />,
-    children: [{ index: true, element: <Welcome /> }],
+    children: [{ index: true, element: <Home /> }],
   },
-
-  // {
-  //   path: '/',
-  //   element: <RootLayout />,
-  //   children: [
-  //     { path: '/', element: <Welcome />},
-  //     { path: '/login', element: <LoginPage /> },
-  //     { path: '/home', element: <HomePage />  },
-  //   ],
-  // }
 ]);
 
 function App() {

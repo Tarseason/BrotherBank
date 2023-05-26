@@ -1,15 +1,7 @@
-import { Link } from "react-router-dom";
+import Login from "../components/Login";
 
 function LoginPage() {
-  return (
-    <>
-    <div>Login page</div>
-      <p>
-        Login <Link to="/home">Click para fazer login</Link>.
-      </p>
-    </>
-    
-  )
+  return <Login />
 }
 
 export default LoginPage;
