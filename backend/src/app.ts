@@ -1,4 +1,5 @@
 import express from 'express';
+const cors = require('cors')
 import ErrorHandler from './Middlewares/Errorhandler';
 import UserRouter from './Routes/UserRoutes';
 import TransactionRoute from './Routes/TransactionRoute';
@@ -8,6 +9,7 @@ import FavorConcludedRouter from './Routes/FavorConcludedRoute';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(UserRouter);
 app.use(FavorRouter);
 app.use(TransactionRoute);

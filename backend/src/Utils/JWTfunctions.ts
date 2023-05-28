@@ -10,3 +10,5 @@ const jwtConfig: SignOptions = {
 export const createJWT = (payload: any) => JWT.sign(payload, JWT_SECRET, jwtConfig);
 
 export const verifyJwt = (token: string) => JWT.verify(token, JWT_SECRET);
+
+export const decodeJWT = (token: string) => JWT.decode(token)
