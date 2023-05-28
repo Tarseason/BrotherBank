@@ -7,7 +7,7 @@ function MainNavigation() {
     <header className={classes.header}>
     <nav>
       <ul className={classes.list}>
-        <liv>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -15,8 +15,8 @@ function MainNavigation() {
           >
             Pedir Favor
           </NavLink>
-        </liv>
-        <liv>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -24,8 +24,8 @@ function MainNavigation() {
           >
             Historico
           </NavLink>
-        </liv>
-        <liv>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -33,8 +33,8 @@ function MainNavigation() {
           >
             Adicionar Brother
           </NavLink>
-        </liv>
-        <liv>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -42,7 +42,7 @@ function MainNavigation() {
           >
             Ganhar Credito
           </NavLink>
-        </liv>
+        </li>
       </ul>
     </nav>
   </header>

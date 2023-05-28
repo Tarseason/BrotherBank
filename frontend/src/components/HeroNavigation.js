@@ -7,7 +7,7 @@ function HeroNavigation() {
     <header className={classes.header}>
     <nav>
       <ul className={classes.list}>
-        <liv>
+        <li>
           <NavLink
             to='/login'
             className={({ isActive }) =>
@@ -16,8 +16,8 @@ function HeroNavigation() {
           >
             Login
           </NavLink>
-        </liv>
-        <liv>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -25,8 +25,8 @@ function HeroNavigation() {
           >
             Cadastro
           </NavLink>
-        </liv>
-        <liv>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive ? classes.active : undefined
@@ -34,7 +34,7 @@ function HeroNavigation() {
           >
             Saiba Mais
           </NavLink>
-        </liv>
+        </li>
       </ul>
     </nav>
   </header>
