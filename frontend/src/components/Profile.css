@@ -1,0 +1,41 @@
+.card {
+  margin: 4rem 2rem;
+  position: relative;
+  transition: 0.5s;
+  width: 250px;
+  border: 1px solid red;
+}
+
+.card .user {
+  border: 1px solid red;
+  position: relative;
+  width: 240px;
+  /* min-height: 150px; */
+  background: 'purple';
+  display: flex;
+  justfy-content: center;
+  align-itens: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 60px 40px 30px;
+}
+
+.card .user .imgBx {
+  position: absolute;
+  top: 0;
+  transform: translateY(-60%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  overflow: hidden;
+  transition: 0.5s;
+  z-index: 10;
+  align-items: center;
+}
+
+.card .user .imgBx img {
+  position: absolute;
+  width: 100%;
+}

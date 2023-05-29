@@ -1,12 +1,10 @@
-// import HeroNavigation from "../components/HeroNavigation";
-// import PageContent from "../components/PageContent";
+import Profile from "../components/Profile";
 
 function HomePage() {
   return (
-    <>
-      <h1>Sua Home Page</h1>
-      <p>Varias coisas legais aqui!</p>
-    </>
+    <main>
+      <Profile />
+    </main>
   );
 }
 export default HomePage;
