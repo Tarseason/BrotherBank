@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
-import { imgBG } from '../Utils/imgTemporaria';
 import './Profile.css'
 
 function Profile() {
   const [userInfo, setUserInfo] = useState([]);
   return (
     <div className='card'>
-      <div className='user' style={{backgroundImage: imgBG}}>
+      <div className='user'>
         <div className='imgBx'>
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQudFuROqfYYyfkAds1wPGIoggjU1_5LCtGwpXEAhwzn8YU8Mz39O7qQ0UiCqFltbUC4I&usqp=CAU" alt="perfil avatar" />
         </div>        
