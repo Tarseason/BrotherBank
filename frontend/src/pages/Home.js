@@ -1,9 +1,12 @@
+import Main from "../components/Main";
 import Profile from "../components/Profile";
+
 
 function HomePage() {
   return (
-    <main>
+    <main className="contentMain">
       <Profile />
+      <Main />
     </main>
   );
 }

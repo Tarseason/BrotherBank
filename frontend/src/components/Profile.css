@@ -1,5 +1,5 @@
 .card {
-  margin: 4rem 2rem;
+  margin: 2rem 1.5rem;
   position: relative;
   transition: 0.5s;
   width: 250px;
@@ -7,10 +7,9 @@
 }
 
 .card .user {
-  border: 1px solid red;
+  border: 1px solid blue;
   position: relative;
   width: 240px;
-  /* min-height: 150px; */
   background: 'purple';
   display: flex;
   justfy-content: center;

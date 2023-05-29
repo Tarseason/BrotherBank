@@ -11,3 +11,8 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.contentMain {
+  border: 1px solid red;
+  display: flex;
+}
