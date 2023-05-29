@@ -1,17 +1,13 @@
 import "./CardFavor.css";
 
-function CardFavor() {
+function CardFavor(props) {
+  const { favor } = props;
   return (
     <div className="contentCard">
       <div className="favorContent">
         <div className="favorInfo">
           <h3>Titulo</h3>
-          <p>
-            Descrição do favor pedido e etc Descrição do favor pedido e etc
-            Descrição do favor pedido e etc Descrição do favor pedido e etc
-            Descrição do favor pedido e etc Descrição do favor pedido e etc
-            Descrição do favor pedido e etc Descrição do favor pedido e etc
-          </p>
+          <p>{favor.description}</p>
         </div>
         <div className="cardIdentifier">
           <div className="view">
@@ -23,7 +19,7 @@ function CardFavor() {
             <div className="cardTag">{`[X]  [X]  [X]`}</div>
           </div>
           <div className="action">
-            <div className="amount">$$$$</div>
+            <div className="amount">{favor.amountOffered}</div>
             <div className="btns">
               <button>✓</button>
               <button>X</button>

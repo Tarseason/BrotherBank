@@ -2,12 +2,11 @@ import CardFavor from "../UI/CardFavor";
 
 import './Main.css'
 
-function Main() {
+function Main(props) {
+  const {infoMain} = props;
   return(
     <main className="favors">
-      <CardFavor />
-      <CardFavor />
-      <CardFavor />
+      {infoMain.map((favor) => <CardFavor favor={favor}/>)}
     </main>
   )
 }
