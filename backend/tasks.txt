@@ -1,20 +1,60 @@
-Prioridade*
-  Criar tabelas para favors aceitas;
-  Criar tabelas para favors concluidas;
-  -- CRUD em cada uma das Tabelas;
+front-end
 
-° Refatorar para User para adicionar um campo do tipo tags
-  tags do tipo especialidades da pessoa <Designe, Art, Textos, Programação>
+1 rever portal
+	aplicar portal nos NavLink
+  useReducer
+  ReactRouterDOM
+  
+	
+	(MainNavigation)
+	
+		Criar Modal
+			Pedir favor
+			historico
+			add Brother
+				*do function Search user to generic info
+				<fazer sistema de busca de usuarios>
+				
+				
+1.1
+	botao para exibir favores diretos/global
+	função para aceitar ou negar favor
+		*sumir botao de negar quando listado os favores globais
+		quando negado um favor direto ele ser enviado
+		para quem solicitou
+			*criar um banco para armazenar essas informações
+			
+			
+Backend
 
-° Refatorar User para adicionar um novo campo do tipo array onde ira conter
-  array de favores pendentes 'FEITO' ajustar para exibir tbm o nome do pedinte
-  array de favores aceitos
-  array de favores concluidos
-  array de amigos
-  array de solicitações para novos amigos;
+0.01 Logica para Icone de Perfil
+	Somente 10 icones para escolha
 
-° Adicionar array contendo conquistas
-  uma do tipo <titulos (ex: Fulano o Solucionador)>
-  um do tipo <selos/tags>
+1 criar tabela para titulos
+	especialidade
+	conquistas
+	isignias
+	
+1.1 refatorar interface do user
+	id?: string
+	avatarIcon: ???
+	name: string
+	title?: string
+	especialidade?:
+	amountMoney: number
+	conquistas: Array[string]
+	favorQt: number
+	insignia: ???
+	
+	
+2 Fazer classes
+	Favors
+		brothersAdded
+		required
+		aceppts
+		concluded
 
-° Deixar o get Favor do tipo global padrao;
+2.2 refatorar info
+	required
+	aceppt
+	concluded
