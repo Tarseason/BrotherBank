@@ -9,8 +9,8 @@ front-end
 	(MainNavigation)
 	
 		Criar Modal
-			Pedir favor
-			historico
+			Pedir favor*
+			historico*
 			add Brother
 				*do function Search user to generic info
 				<fazer sistema de busca de usuarios>
