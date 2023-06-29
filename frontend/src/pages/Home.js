@@ -5,16 +5,15 @@ import Profile from "../components/Profile";
 
 function HomePage() {
   const data = useLoaderData();
-  const {userData} = data
-  console.log(userData)
+  const { userData } = data;
   return (
     <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
       <main className="contentMain">
         <Await resolve={userData}>
-          <Profile infoProfile={userData.profileData}/>
+          <Profile infoProfile={userData.profileData} />
         </Await>
         <Await resolve={userData}>
-          <Main infoMain={userData.favorData}/>
+          <Main infoMain={userData.favorData} />
         </Await>
       </main>
     </Suspense>
@@ -34,14 +33,16 @@ async function loadHome() {
 
   const profileData = await profileResponse.json();
 
-  const favorResponse = await fetch('http://localhost:3001/favor/direct/' + user.id)
+  const favorResponse = await fetch(
+    "http://localhost:3001/favor/direct/" + user.id
+  );
 
   if (!favorResponse.ok) {
     return json({ message: "Could not fetch events." }, { status: 500 });
   }
 
-  const favorData = await favorResponse.json()
-  const userData = { profileData, favorData }
+  const favorData = await favorResponse.json();
+  const userData = { profileData, favorData };
   return userData;
 }
 

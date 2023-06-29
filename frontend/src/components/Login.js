@@ -1,23 +1,77 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useReducer, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../store/auth-context";
+
+const emailReducer = (state, action) => {
+  if (action.type === "USER_INPUT") {
+    return { value: action.val, isValid: action.val.includes("@") };
+  }
+
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: state.value.includes("@") };
+  }
+  return { value: "", isValid: false };
+};
+
+const passwordReducer = (state, action) => {
+  if (action.type === "USER_INPUT") {
+    return { value: action.val, isValid: action.val.trim().length > 6 };
+  }
+
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: state.value.trim().length > 6 };
+  }
+  return { value: "", isValid: false };
+};
 
 function Login() {
-  const [emailEntered, setEmailEntered] = useState("");
-  const [passwordEntered, setPasswordEntered] = useState("");
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [formIsValid, setFormIsValid] = useState();
+  const [emailState, dispatchEmail] = useReducer(emailReducer, {
+    value: "",
+    isValid: false,
+  });
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+    value: "",
+    isValid: false,
+  });
+
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setFormIsValid(emailIsValid & passwordIsValid);
+    }, 500);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
-    setEmailEntered(event.target.value);
+    dispatchEmail({ type: "USER_INPUT", val: event.target.value });
   };
 
   const passwordChangeHandler = (event) => {
-    setPasswordEntered(event.target.value);
+    dispatchPassword({ type: "USER_INPUT", val: event.target.value });
+  };
+
+  const validateEmailHandler = () => {
+    dispatchEmail({ type: "INPUT_BLUR" });
+  };
+
+  const validatePasswordHandler = () => {
+    dispatchPassword({ type: "INPUT_BLUR" });
   };
 
   const longinHandle = async () => {
     const user = {
-      email: emailEntered,
-      password: passwordEntered,
+      email: emailState.value,
+      password: passwordState.value,
     };
+
+    console.log(user);
     const requisicao = await fetch("http://localhost:3001/login", {
       method: "POST",
       body: JSON.stringify(user),
@@ -32,11 +86,15 @@ function Login() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    console.log(formIsValid);
 
     const result = await longinHandle();
 
     localStorage.setItem("token", JSON.stringify(result.token));
     localStorage.setItem("userInfo", JSON.stringify(result.user));
+    console.log(result);
+    ctx.infoUser(result);
+    navigate("../home");
   };
 
   return (
@@ -45,20 +103,20 @@ function Login() {
       <input
         id="email"
         type="email"
-        value={emailEntered}
+        value={emailState.value}
         onChange={emailChangeHandler}
+        onBlur={validateEmailHandler}
       />
       <label htmlFor="password">Senha</label>
       <input
         id="password"
         type="password"
-        value={passwordEntered}
+        value={passwordState.value}
         onChange={passwordChangeHandler}
+        onBlur={validatePasswordHandler}
       />
-      <button type="submit"  onClick={submitHandler}>
-        <Link to='../home'>
+      <button type="submit" onClick={submitHandler} disabled={!formIsValid}>
         Login
-        </Link>
       </button>
     </form>
   );

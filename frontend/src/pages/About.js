@@ -1,13 +1,12 @@
-import Login from "../components/Login";
 import HeroNavigation from "../components/HeroNavigation";
 
-function LoginPage() {
+function About() {
   return (
     <>
       <HeroNavigation />
-      <Login />
+      <h1>About page</h1>
     </>
   );
 }
 
-export default LoginPage;
+export default About;
