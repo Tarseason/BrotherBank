@@ -6,10 +6,12 @@ import Welcome from "./pages/Welcome";
 import Home, { loader as homeLoader } from "./pages/Home";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Welcome /> },
       { path: "login", element: <LoginPage /> },
