@@ -1,14 +1,16 @@
 import CardFavor from "../UI/CardFavor";
 
-import './Main.css'
+import "./Main.css";
 
 function Main(props) {
-  const {infoMain} = props;
-  return(
+  const { infoMain } = props;
+  return (
     <main className="favors">
-      {infoMain.map((favor) => <CardFavor favor={favor}/>)}
+      {infoMain.map((favor) => (
+        <CardFavor key={favor.id} favor={favor} />
+      ))}
     </main>
-  )
+  );
 }
 
 export default Main;
