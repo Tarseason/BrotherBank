@@ -7,7 +7,9 @@ import Home, { loader as homeLoader } from "./pages/Home";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import ErrorPage from "./pages/Error";
-import Transaction from "./pages/pagesFavor/Transaction";
+import Transaction, {
+  action as actionTransfer,
+} from "./pages/pagesFavor/Transaction";
 import AskFavorPage from "./pages/pagesFavor/AskFavor";
 import HistoricPage from "./pages/pagesFavor/Historic";
 import AddBrother from "./pages/pagesFavor/AddBrother";
@@ -33,6 +35,7 @@ const router = createBrowserRouter([
           {
             path: "transfer",
             element: <Transaction />,
+            action: actionTransfer,
           },
           {
             path: "historic",
