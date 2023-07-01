@@ -7,6 +7,10 @@ import Home, { loader as homeLoader } from "./pages/Home";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import ErrorPage from "./pages/Error";
+import Transaction from "./pages/pagesFavor/Transaction";
+import AskFavorPage from "./pages/pagesFavor/AskFavor";
+import HistoricPage from "./pages/pagesFavor/Historic";
+import AddBrother from "./pages/pagesFavor/AddBrother";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +29,22 @@ const router = createBrowserRouter([
             index: true,
             element: <Home />,
             loader: homeLoader,
+          },
+          {
+            path: "transfer",
+            element: <Transaction />,
+          },
+          {
+            path: "historic",
+            element: <HistoricPage />,
+          },
+          {
+            path: "ask",
+            element: <AskFavorPage />,
+          },
+          {
+            path: "addbrother",
+            element: <AddBrother />,
           },
         ],
       },

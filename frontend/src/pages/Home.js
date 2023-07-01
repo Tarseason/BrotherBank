@@ -7,16 +7,18 @@ function HomePage() {
   const data = useLoaderData();
   const { userData } = data;
   return (
-    <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
-      <main className="contentMain">
-        <Await resolve={userData}>
-          <Profile infoProfile={userData.profileData} />
-        </Await>
-        <Await resolve={userData}>
-          <Main infoMain={userData.favorData} />
-        </Await>
-      </main>
-    </Suspense>
+    <>
+      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
+        <main className="contentMain">
+          <Await resolve={userData}>
+            <Profile infoProfile={userData.profileData} />
+          </Await>
+          <Await resolve={userData}>
+            <Main infoMain={userData.favorData} />
+          </Await>
+        </main>
+      </Suspense>
+    </>
   );
 }
 export default HomePage;

@@ -1,17 +1,18 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 
 function HeroNavigation() {
-  const params = useParams();
-  console.log(params, "+++");
+  const navigate = useNavigate();
   return (
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
           <li>
             <NavLink
-              to="../login"
+              onClick={() => {
+                navigate("/login");
+              }}
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
@@ -22,7 +23,9 @@ function HeroNavigation() {
           </li>
           <li>
             <NavLink
-              to="../register"
+              onClick={() => {
+                navigate("/register");
+              }}
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
@@ -32,7 +35,9 @@ function HeroNavigation() {
           </li>
           <li>
             <NavLink
-              to="../about"
+              onClick={() => {
+                navigate("/about");
+              }}
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }

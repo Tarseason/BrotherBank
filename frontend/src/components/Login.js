@@ -71,7 +71,6 @@ function Login() {
       password: passwordState.value,
     };
 
-    console.log(user);
     const requisicao = await fetch("http://localhost:3001/login", {
       method: "POST",
       body: JSON.stringify(user),
@@ -86,13 +85,12 @@ function Login() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(formIsValid);
 
     const result = await longinHandle();
 
     localStorage.setItem("token", JSON.stringify(result.token));
     localStorage.setItem("userInfo", JSON.stringify(result.user));
-    console.log(result);
+
     ctx.infoUser(result);
     navigate("../home");
   };
