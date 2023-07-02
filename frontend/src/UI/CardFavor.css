@@ -1,0 +1,63 @@
+.favorContent {
+  border: 1px solid yellow;
+  display: flex;
+  margin: 1vh;
+  justify-content: space-evenly;
+}
+
+.favorInfo {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorInfo h3{
+  border: 1px solid black;
+  margin-left: 10px;
+}
+
+.favorInfo p {
+  border: 1px solid pink;
+  width: auto;
+  height: 90px;
+  overflow: scroll;
+}
+
+.cardIdentifier {
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  heigth: 100%;
+}
+
+.view {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action {
+  border: 1px solid blue;
+  display: flex;
+  width: 100%;
+}
+
+.amount {
+  border: 1px solid purple;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btns {
+  border: 1px solid purple;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}

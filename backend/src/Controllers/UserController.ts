@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import IUser from '../Interfaces/IUser';
 import UserService from '../Services/UserService';
+import { decodeJWT } from '../Utils/JWTfunctions';
 
 class UserController {
   private req: Request;
@@ -28,9 +29,17 @@ class UserController {
 
   public async login() {
     const { email, password } = this.req.body;
-
-    const token = await this.service.login({ email, password });
-    return this.res.status(201).json({ token });
+    try {
+      const token = await this.service.login({ email, password });
+      const userInfo = decodeJWT(token);
+      const infoToResponse = {
+        user: userInfo,
+        token: token
+      }
+      return this.res.status(201).json(infoToResponse);
+    } catch (err) {
+      return this.next(err)
+    }
   }
 
   public async getAllUsers() {
@@ -72,6 +81,17 @@ class UserController {
       return this.res.status(204).json({ message: 'User deleted! :(' });
     } catch (err) {
       return this.next(err);
+    }
+  }
+
+  public async findByName() {
+    const {name} = this.req.body;
+    
+    try {
+      const result = await this.service.findByName(name);
+      return this.res.status(200).json(result)
+    } catch (err) {
+      return this.next(err)
     }
   }
 }

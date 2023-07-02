@@ -90,6 +90,10 @@ abstract class AbstractODM<T> {
   public async getAcceptById(id: string): Promise<T[] | null> {
     return this.model.find({ requestedFavorId: id });
   }
+
+  public async findByName(name: RegExp): Promise<T  | null> {
+    return this.model.findOne({userName: name});
+  }
 }
 
 export default AbstractODM;

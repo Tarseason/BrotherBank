@@ -1,0 +1,60 @@
+front-end
+
+1 rever portal
+	aplicar portal nos NavLink
+  useReducer
+  ReactRouterDOM
+  
+	
+	(MainNavigation)
+	
+		Criar Modal
+			Pedir favor*
+			historico*
+			add Brother
+				*do function Search user to generic info
+				<fazer sistema de busca de usuarios>
+				
+				
+1.1
+	botao para exibir favores diretos/global
+	função para aceitar ou negar favor
+		*sumir botao de negar quando listado os favores globais
+		quando negado um favor direto ele ser enviado
+		para quem solicitou
+			*criar um banco para armazenar essas informações
+			
+			
+Backend
+
+0.01 Logica para Icone de Perfil
+	Somente 10 icones para escolha
+
+1 criar tabela para titulos
+	especialidade
+	conquistas
+	isignias
+	
+1.1 refatorar interface do user
+	id?: string
+	avatarIcon: ???
+	name: string
+	title?: string
+	especialidade?:
+	amountMoney: number
+	conquistas: Array[string]
+	favorQt: number
+	insignia: ???
+	
+	
+2 Fazer classes
+	Favors
+		brothersAdded
+		required
+		aceppts
+		concluded
+
+2.2 refatorar info
+	required
+	aceppt
+	concluded
