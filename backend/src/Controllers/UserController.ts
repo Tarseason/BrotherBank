@@ -83,6 +83,17 @@ class UserController {
       return this.next(err);
     }
   }
+
+  public async findByName() {
+    const {name} = this.req.body;
+    
+    try {
+      const result = await this.service.findByName(name);
+      return this.res.status(200).json(result)
+    } catch (err) {
+      return this.next(err)
+    }
+  }
 }
 
 export default UserController;

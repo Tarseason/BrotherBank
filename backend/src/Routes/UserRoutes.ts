@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import UserController from '../Controllers/UserController';
+const cors = require('cors')
 // import AuthToken from '../Middlewares/JWT';
 
 const router = Router();
+router.use(cors())
 // const Jwt = new AuthToken();
 const PATH_USER = '/user';
 
@@ -35,6 +37,11 @@ router.delete(
 router.post(
   ('/login'),
   (req, res, next) => new UserController(req, res, next).login(),
+);
+
+router.post(
+  `${PATH_USER}/find`,
+  (req, res, next) => new UserController(req, res, next).findByName(),
 );
 
 export default router;

@@ -47,6 +47,14 @@ class UserService {
   public async deleteUser(id: string) {
     return this.userODM.delete(id);
   }
+
+  public async findByName(name: string) {
+    const regexNome = new RegExp(name.replace(/\s+/g, "\\s*"), "i"); 
+    const userByName = await this.userODM.findByName(regexNome);
+    console.log(userByName)
+    if (!userByName) throw new ErrorHTTP(HTTPCodes.NOT_FOUND, MESSAGEG_ERROR_USER);
+    return this.createUserDomain(userByName)
+  }
 }
 
 export default UserService;
